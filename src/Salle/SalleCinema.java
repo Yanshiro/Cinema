@@ -45,11 +45,6 @@ public class SalleCinema {
         }
         return false;
     }
-    public double tauxRemplissage(){
-        return (double)(capacite-nbPlacesDisponibles)/(double)capacite;
-    }
-
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("SalleCinema\n");

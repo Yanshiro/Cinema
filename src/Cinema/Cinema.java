@@ -47,23 +47,17 @@ public final class Cinema {
             throw new IllegalArgumentException("Seance inexistante");
         }
     }
-    public double chiffreAffaire(){
-        double ca=0;
-        for(Seance s : seances){
-            ca+=s.chiffreAffaire();
+    public Double chiffreAffaire() {
+        return seances.stream().map(seance -> seance.chiffreAffaire()).reduce(0.0d,Double::sum);
         }
-        return ca;
-    }
 
     public double tauxRemplissage(){
-        int nbplacesprises=0;
-        int nbplacestotales=0;
-        for(SalleCinema salle : salles){
-            nbplacestotales+=salle.getCapacite();
-            nbplacesprises+=salle.getCapacite()-salle.getNbPlacesDisponibles();
-        }
-       return (double)nbplacesprises/(double)nbplacestotales;
 
+        Integer nbtotal=salles.stream().map(salleCinema -> salleCinema.getCapacite())
+                .reduce(0,Integer::sum);
+        Integer prises=salles.stream().map(salleCinema -> salleCinema.getCapacite()-salleCinema.getNbPlacesDisponibles())
+                .reduce(0,Integer::sum);
+        return (double)prises/(double)nbtotal;
     }
 
     @Override

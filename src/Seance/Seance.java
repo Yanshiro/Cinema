@@ -23,7 +23,7 @@ public final class Seance {
         this.salle = salle;
     }
 
-    public double chiffreAffaire(){
+    public  double chiffreAffaire(){
         return prix*(salle.getCapacite()-salle.getNbPlacesDisponibles());
     }
 
